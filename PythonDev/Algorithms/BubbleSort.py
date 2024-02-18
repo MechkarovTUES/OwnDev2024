@@ -1,7 +1,7 @@
 import random 
 
 array = []
-for i in range(1, 10):
+for i in range(1, 100):
     array.append(random.randint(1, 100))
 
 print("unsorted array: ", array)
