@@ -10,10 +10,19 @@ import pyautogui
 import time
 
 
-url = "https://monkeytype.com"
+url = "https://monkeytype.com/login"
 driver = webdriver.Chrome()  # You can use other drivers like Firefox or Edge
-driver.get(url)
 
+
+driver.get(url)
+username = "alexandar.im@gmail.com"
+password = "sekfer-9ricpa-Timfyz"
+# find username/email field and send the username itself to the input field
+driver.find_element_by_xpath('//*[@id="pageLogin"]/div[3]/form/input[1]').send_keys(username)
+# find password input field and insert password as well
+driver.find_element_by_xpath('//*[@id="pageLogin"]/div[3]/form/input[2]').send_keys(password)
+# click login button
+driver.find_element_by_xpath('//*[@id="pageLogin"]/div[3]/form/button[1]').click()
 
 
 response = requests.get(url)
