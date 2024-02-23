@@ -24,28 +24,30 @@ soup = BeautifulSoup(html_data, 'html.parser')
 # Find the div with id="words"
 div_words = soup.find('div', id='words')
 
-
+def ScrapWords():
+    div_words = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "words")))
+    return div_words.text
 
 
 # Wait for the div with id="words" to be present in the DOM
+time.sleep(10)
 try:
-    div_words = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, "words"))
-    )
-    
-    # Extract and print the content of the div
-    print(div_words.text)
-    '''
-    if div_words:
-    # Extract letters from each word
-        words = div_words.find_all('div', class_='word')
-    
-        for word in words:
-            letters = word.find_all('letter')
-            word_text = ''.join(letter.text for letter in letters)
-            print(word_text)
-        else:
-            print("Div with id='words' not found.")
-        '''
+    start_time = time.time()
+    '''while time.time() - start_time < 30:  # Continue loop until 30 seconds have passed
+        words_str = ScrapWords()
+        words_list = words_str.split()
+        print(words_list)
+        for word in words_list:
+            if word != 'correct':
+                pyautogui.write(word + ' ')
+            time.sleep(0.1)  # Adjust the sleep time as needed'''
+    words_str = ScrapWords()
+    words_list = words_str.split()
+    print(words_list)
+    for word in words_list:
+        if word != 'correct':
+            pyautogui.write(word + ' ')
+        time.sleep(0.05)
+    time.sleep(60)
 finally:
     driver.quit()
