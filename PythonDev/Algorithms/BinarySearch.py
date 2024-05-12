@@ -1,5 +1,5 @@
 array = []
-for i in range(1, 32000):
+for i in range(1, 3200):
     array.append(i)
 num = int(input("Enter the number to search: "))
 
