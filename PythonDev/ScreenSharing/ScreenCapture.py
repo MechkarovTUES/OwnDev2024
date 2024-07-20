@@ -20,7 +20,7 @@ with mss() as sct:
         img = Image.frombytes("RGB", sct_img.size, sct_img.bgra, "raw", "BGRX")
 
         # Paste the resized cursor image onto the screenshot
-        img.paste(Image.open("cursor/default@2x.png"), getPos(), Image.open("cursor/default@2x.png"))
+        img.paste(Image.open("default.png"), getPos(), Image.open("default.png"))
 
         # Convert the PIL image to a format suitable for OpenCV
         screen = np.array(img) 
